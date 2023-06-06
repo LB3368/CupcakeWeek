@@ -12,24 +12,14 @@ public class Main {
         // Create new Cupcake object named cupcake
         Cupcake cupcake = new Cupcake();
 
-        //Set the price of the cupcake
-        cupcake.setPrice(2.50);
-
-        //Add cupcake to menu
-        cupcakeMenu.add(cupcake);
-
         // Create a RedVelvet object
         RedVelvet redVelvet = new RedVelvet();
-        redVelvet.setPrice(3.00);
-        cupcakeMenu.add(redVelvet);
 
         //Create a new Chocolate object
         Chocolate chocolate = new Chocolate();
-        chocolate.setPrice(2.75);
-        cupcakeMenu.add(chocolate);
 
         //Print message
-        System.out.println("We are in the middle of creating the cupcake menu. We currently have three cupcakes on" + "\nthe menu but we need to decide on pricing.");
+        System.out.println("We are in the middle of creating the cupcake menu. We currently have three cupcakes on" + "the menu but we need to decide on pricing.");
 
         // Create the scanner object to accept user input
         Scanner input = new Scanner(System.in);
@@ -37,7 +27,7 @@ public class Main {
         System.out.println("We are deciding on the price for our standard cupcake. Here is the description: ");
         cupcake.type();
 
-        System.out.println("How much would you like to charge for the cupcake?" + "\n(Input a numerical integer taken to 2 decimal places)");
+        System.out.println("How much would you like to charge for the cupcake?" + "(Input a numerical integer taken to 2 decimal places)");
 
         //Create a string name priceText
         String priceText = input.nextLine();
@@ -51,7 +41,7 @@ public class Main {
         System.out.println("We are deciding on the price for our red velvet cupcake. Here is the description: ");
         redVelvet.type();
 
-        System.out.println("How much would you like to charge for the cupcake?" + "\n(Input a numerical integer taken to 2 decimal places)");
+        System.out.println("How much would you like to charge for the cupcake?" + "(Input a numerical integer taken to 2 decimal places)");
 
         //Set string name priceText equal to input.nextLine()
         priceText = input.nextLine();
@@ -65,13 +55,18 @@ public class Main {
         System.out.println("We are deciding the price for our chocolate cupcake. Here is the description: ");
         chocolate.type();
 
-        System.out.println("How much would you like to charge for the cupcake?" + "\n(Input a numerical integer taken to 2 decimal places)");
+        System.out.println("How much would you like to charge for the cupcake?" + "(Input a numerical integer taken to 2 decimal places)");
 
         priceText = input.nextLine();
 
         price = Double.parseDouble(priceText);
 
         chocolate.setPrice(price);
+
+        cupcakeMenu.add(cupcake);
+        cupcakeMenu.add(redVelvet);
+        cupcakeMenu.add(chocolate);
+
 
         //Create a new ArrayList that contains the Drink objects and name it 'drinkMenu'
         ArrayList<Drink> drinkMenu = new ArrayList<>();
@@ -94,10 +89,10 @@ public class Main {
         water.type();
 
         // Print message calling for integer with 2 decimal places
-        System.out.println("How much would you like to charge for the water bottle?" + "\n(Input a numerical number taken to 2 decimal places)");
+        System.out.println("How much would you like to charge for the water bottle?" + "(Input a numerical number taken to 2 decimal places)");
 
         // Set the String variable named priceText equal to input.nextLine()
-        // We are accepting the price as a String named priceText so we can convert it into a double later, just for practice
+        // We are accepting the price as a String named priceText we can convert it into a double later, just for practice
         priceText = input.nextLine();
 
         // Set double variable name price equal to Double.parseDouble(priceText)
@@ -110,7 +105,7 @@ public class Main {
         soda.type();
 
         System.out.println("How much would you like to charge for the bottled soda?" +
-                "\n(Input a numerical number taken to 2 decimal places)");
+                "(Input a numerical number taken to 2 decimal places)");
 
         priceText = input.nextLine();
         price = Double.parseDouble(priceText);
@@ -120,7 +115,7 @@ public class Main {
         milk.type();
 
         System.out.println("How much would you like to charge for the bottled milk?" +
-                "\n(Input a numerical number taken to 2 decimal places)");
+                "(Input a numerical number taken to 2 decimal places)");
 
         priceText = input.nextLine();
         price = Double.parseDouble(priceText);
@@ -134,8 +129,9 @@ public class Main {
         //Print the drink menu
         System.out.println("Drink Menu:");
         for (Drink drink : drinkMenu) {
-            System.out.println(drink.type());
+            drink.type();
         }
+        new Order(cupcakeMenu, drinkMenu);
     }
 }
 
@@ -153,23 +149,26 @@ class Cupcake {
     }
 
     // Create public function name type
-    public String type() {
-        return "A basic, generic cupcake, with vanilla frosting";
+    public void type() {
+        System.out.println("A basic, generic cupcake, with vanilla frosting");
+        //return false;
     }
 }
 
 // Create a class name RedVelvet that extends from Cupcake
 class RedVelvet extends Cupcake {
     //create public function name type
-    public String type() {
-        return "A red velvet based cupcake, with cream cheese frosting.";
+    public void type() {
+        System.out.println("A red velvet based cupcake, with cream cheese frosting.");
+        //return false;
     }
 }
 
 //Create a class name Chocolate that extends from Cupcake
 class Chocolate extends Cupcake {
-    public String type() {
-        return "A chocolate based cupcake, with chocolate frosting.";
+    public void type() {
+        System.out.println("A chocolate based cupcake, with chocolate frosting.");
+        //return false;
     }
 }
 
@@ -191,25 +190,22 @@ class Drink
     }
 
     // Create a public function named type that prints a description and returns void
-    public String type() {
-        return "A bottle of water";
-    }
-    public String type(String type) {
-        return "Drink:" + type + ", $" + price;
+    public void type() {
+        System.out.println("A bottle of water");
     }
 }
 
 //Create a new class Soda that extends from Drink
 class Soda extends Drink {
     // Create the public function named 'type' that prints description and returns void
-    public String type() {
-        return "A bottle of soda";
+    public void type() {
+        System.out.println("A bottle of soda");
     }
 }
 
 //Create class Milk that extends from Drink
 class Milk extends Drink {
-    public String type() {
-        return "A bottle of milk";
+    public void type() {
+        System.out.println("A bottle of milk");
     }
 }
